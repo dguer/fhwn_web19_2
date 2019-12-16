@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>The Game of Life</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="scripts/code.js"></script>
+</head>
+
+<body>
+
+    <h1>The Game of Life</h1>
+    <div id="gridContainer">
+
+    </div>
+
+    <div class="controls">
+        <button type="button" class=".btn-xs" id="start"><span>Start</span></button>
+        <button type="button" class=".btn-xs" id="clear"><span>Clear</span></button>
+        <button type="button" class=".btn-xs" id="random"><span>Random</span></button>
+       
+            <button class=".btn-xs dropdown-toggle" onclick="_BusinessLogic.CreateDropDownOfLevels()" type="button"
+             id="level" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Levels
+            </button>
+            <div class="dropdown-menu" id="LevelButtonContainer">
+            </div>
+    </div>
+    <div class="setsize">
+        <div class="col">
+            <input type="number" min="5" max="600" value="25" id="heightIn" placeholder="Height">
+            <input type="number" min="5" max="600" value="60" id="widthIn" placeholder="Width">
+            <button type="button" class=".btn-xs" onclick="setSize();" id="size">Set</button>
+        </div>
+    </div>
+
+    
+
+</body>
+
+</html>

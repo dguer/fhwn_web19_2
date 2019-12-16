@@ -43,13 +43,13 @@ function initialize() {
 }
 
 function setSize(){
+    
     n_rows = document.getElementById("heightIn").value;
     n_cols = document.getElementById("widthIn").value;
     rows = n_rows;
     cols = n_cols;
 
-    var deleteTable = "";
-
+    var emptyTable = document.getElementById("gridContainer").innerHTML = "";
     var gridContainer = document.getElementById('gridContainer');
     
     if (!gridContainer) {
@@ -70,7 +70,6 @@ function setSize(){
         }
         table.appendChild(tr);
     }
-    //gridContainer.appendChild(deleteTable);
     gridContainer.appendChild(table);
 }
 
@@ -166,6 +165,7 @@ function randomButtonHandler() {
 // clear the grid
 function clearButtonHandler() {
     console.log("Clear the game: stop playing, clear the grid");
+    
     
     playing = false;
     var startButton = document.getElementById('start');

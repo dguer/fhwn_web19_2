@@ -42,8 +42,8 @@ function initialize() {
     setupControlButtons();
 }
 
-function setSize(){
-    
+function setSize() {
+
     n_rows = document.getElementById("heightIn").value;
     n_cols = document.getElementById("widthIn").value;
     rows = n_rows;
@@ -51,27 +51,27 @@ function setSize(){
 
     var emptyTable = document.getElementById("gridContainer").innerHTML = "";
     var gridContainer = document.getElementById('gridContainer');
-    
+
     if (!gridContainer) {
         // Throw error
         console.error("Problem: No div for the drid table!");
-    }else{
+    } else {
 
-    var table = document.createElement("table");
-    
-    for (var i = 0; i < rows; i++) {
-        var tr = document.createElement("tr");
-        for (var j = 0; j < cols; j++) {//
-            var cell = document.createElement("td");
-            cell.setAttribute("id", i + "_" + j);
-            cell.setAttribute("class", "dead");
-            cell.onclick = cellClickHandler;
-            tr.appendChild(cell);
+        var table = document.createElement("table");
+
+        for (var i = 0; i < rows; i++) {
+            var tr = document.createElement("tr");
+            for (var j = 0; j < cols; j++) {//
+                var cell = document.createElement("td");
+                cell.setAttribute("id", i + "_" + j);
+                cell.setAttribute("class", "dead");
+                cell.onclick = cellClickHandler;
+                tr.appendChild(cell);
+            }
+            table.appendChild(tr);
         }
-        table.appendChild(tr);
+        gridContainer.appendChild(table);
     }
-    gridContainer.appendChild(table);
-}
 
 }
 
@@ -87,7 +87,7 @@ function createTable() {
 
     rows = document.getElementById("heightIn").value;
     cols = document.getElementById("widthIn").value;
-    
+
     for (var i = 0; i < rows; i++) {
         var tr = document.createElement("tr");
         for (var j = 0; j < cols; j++) {//
@@ -99,49 +99,49 @@ function createTable() {
         }
         table.appendChild(tr);
     }
-    
+
     gridContainer.appendChild(table);
-    
+
+}
+
+function cellClickHandler() {
+    var rowcol = this.id.split("_");
+    var row = rowcol[0];
+    var col = rowcol[1];
+
+    var classes = this.getAttribute("class");
+    if (classes.indexOf("live") > -1) {
+        this.setAttribute("class", "dead");
+        grid[row][col] = 0;
+    } else {
+        this.setAttribute("class", "live");
+        grid[row][col] = 1;
     }
 
-    function cellClickHandler() {
-        var rowcol = this.id.split("_");
-        var row = rowcol[0];
-        var col = rowcol[1];
-        
-        var classes = this.getAttribute("class");
-        if(classes.indexOf("live") > -1) {
-            this.setAttribute("class", "dead");
-            grid[row][col] = 0;
-        } else {
-            this.setAttribute("class", "live");
-            grid[row][col] = 1;
-        }
-        
-    }
+}
 
-    function updateView() {
-        for (var i = 0; i < rows; i++) {
-            for (var j = 0; j < cols; j++) {
-                var cell = document.getElementById(i + "_" + j);
-                if (grid[i][j] == 0) {
-                    cell.setAttribute("class", "dead");
-                } else {
-                    cell.setAttribute("class", "live");
-                }
+function updateView() {
+    for (var i = 0; i < rows; i++) {
+        for (var j = 0; j < cols; j++) {
+            var cell = document.getElementById(i + "_" + j);
+            if (grid[i][j] == 0) {
+                cell.setAttribute("class", "dead");
+            } else {
+                cell.setAttribute("class", "live");
             }
         }
     }
+}
 
 function setupControlButtons() {
     // button to start
     var startButton = document.getElementById('start');
     startButton.onclick = startButtonHandler;
-    
+
     // button to clear
     var clearButton = document.getElementById('clear');
     clearButton.onclick = clearButtonHandler;
-    
+
     // button to set random initial state
     var randomButton = document.getElementById("random");
     randomButton.onclick = randomButtonHandler;
@@ -164,38 +164,57 @@ function randomButtonHandler() {
 
 
 function levelChange() {
-    
+    var levelLoad = document.getElementById("level").value;
+    levelLoad.split("\n");
+
+    for (var x = 0; x < levelLoad.length; x++) {
+        for (var i = 0; i < rows; i++) {
+            for (var j = 0; j < cols; j++) {
+
+                var isLive = levelLoad[j][i];
+                if (isLive == 1) {
+                    var cell = document.getElementById(i + "_" + j);
+                    cell.setAttribute("class", "live");
+                } else if (isLive == 0 || "") {
+                    var cell = document.getElementById(i + "_" + j);
+                    cell.setAttribute("class", "dead");
+                }
+            }
+        }
+    }
+
+    /**
+     * 
+     
     var levelLoad = document.getElementById("level").value;
     var totalChar = levelLoad.length;
 
-
-    
-        
-    //levelLoad.split("\n");
-
         for (var i = 0; i < rows; i++) {
+         //   levelLoad.split("\n");
             for (var j = 0; j < cols; j++) {
                 
                 var isLive = levelLoad[j][i];
                 if (isLive == 1) {
-                    var cell = document.getElementById(j + "_" + i);
+                    var cell = document.getElementById(i + "_" + j);
                     cell.setAttribute("class", "live");
+                } else {
+                    cell.setAttribute("class", "dead");
                 }
             }
         }
-
+*/
 }
 
 // clear the grid
 function clearButtonHandler() {
     console.log("Clear the game: stop playing, clear the grid");
-    
-    
+
+
     playing = false;
     var startButton = document.getElementById('start');
-    startButton.innerHTML = "Start";    
+    startButton.innerHTML = "Start";
     clearTimeout(timer);
-    
+
     var cellsList = document.getElementsByClassName("live");
     // convert to array first, otherwise, you're working on a live node list
     // and the update doesn't work!
@@ -203,7 +222,7 @@ function clearButtonHandler() {
     for (var i = 0; i < cellsList.length; i++) {
         cells.push(cellsList[i]);
     }
-    
+
     for (var i = 0; i < cells.length; i++) {
         cells[i].setAttribute("class", "dead");
     }
@@ -228,7 +247,7 @@ function startButtonHandler() {
 // run the life game
 function play() {
     computeNextGen();
-    
+
     if (playing) {
         timer = setTimeout(play, reproductionTime);
     }
@@ -240,7 +259,7 @@ function computeNextGen() {
             applyRules(i, j);
         }
     }
-    
+
     // copy NextGrid to grid, and reset nextGrid
     copyAndResetGrid();
     // copy all 1 values to "live" in the table
@@ -264,37 +283,37 @@ function applyRules(row, col) {
             nextGrid[row][col] = 0;
         }
     } else if (grid[row][col] == 0) {
-            if (numNeighbors == 3) {
-                nextGrid[row][col] = 1;
-            }
+        if (numNeighbors == 3) {
+            nextGrid[row][col] = 1;
         }
     }
-    
+}
+
 function countNeighbors(row, col) {
     var count = 0;
-    if (row-1 >= 0) {
-        if (grid[row-1][col] == 1) count++;
+    if (row - 1 >= 0) {
+        if (grid[row - 1][col] == 1) count++;
     }
-    if (row-1 >= 0 && col-1 >= 0) {
-        if (grid[row-1][col-1] == 1) count++;
+    if (row - 1 >= 0 && col - 1 >= 0) {
+        if (grid[row - 1][col - 1] == 1) count++;
     }
-    if (row-1 >= 0 && col+1 < cols) {
-        if (grid[row-1][col+1] == 1) count++;
+    if (row - 1 >= 0 && col + 1 < cols) {
+        if (grid[row - 1][col + 1] == 1) count++;
     }
-    if (col-1 >= 0) {
-        if (grid[row][col-1] == 1) count++;
+    if (col - 1 >= 0) {
+        if (grid[row][col - 1] == 1) count++;
     }
-    if (col+1 < cols) {
-        if (grid[row][col+1] == 1) count++;
+    if (col + 1 < cols) {
+        if (grid[row][col + 1] == 1) count++;
     }
-    if (row+1 < rows) {
-        if (grid[row+1][col] == 1) count++;
+    if (row + 1 < rows) {
+        if (grid[row + 1][col] == 1) count++;
     }
-    if (row+1 < rows && col-1 >= 0) {
-        if (grid[row+1][col-1] == 1) count++;
+    if (row + 1 < rows && col - 1 >= 0) {
+        if (grid[row + 1][col - 1] == 1) count++;
     }
-    if (row+1 < rows && col+1 < cols) {
-        if (grid[row+1][col+1] == 1) count++;
+    if (row + 1 < rows && col + 1 < cols) {
+        if (grid[row + 1][col + 1] == 1) count++;
     }
     return count;
 }

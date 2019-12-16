@@ -179,8 +179,10 @@ function levelChange() {
                     var cell = document.getElementById(i + "_" + j);
                     cell.setAttribute("class", "dead");
                 }
+                
             }
-        }
+        
+    }
     }
 
     /**

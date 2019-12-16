@@ -162,6 +162,30 @@ function randomButtonHandler() {
     }
 }
 
+
+function levelChange() {
+    
+    var levelLoad = document.getElementById("level").value;
+    var totalChar = levelLoad.length;
+
+
+    
+        
+    //levelLoad.split("\n");
+
+        for (var i = 0; i < rows; i++) {
+            for (var j = 0; j < cols; j++) {
+                
+                var isLive = levelLoad[j][i];
+                if (isLive == 1) {
+                    var cell = document.getElementById(j + "_" + i);
+                    cell.setAttribute("class", "live");
+                }
+            }
+        }
+
+}
+
 // clear the grid
 function clearButtonHandler() {
     console.log("Clear the game: stop playing, clear the grid");

@@ -23,13 +23,6 @@
         <button type="button" class=".btn-xs" id="start"><span>Start</span></button>
         <button type="button" class=".btn-xs" id="clear"><span>Clear</span></button>
         <button type="button" class=".btn-xs" id="random"><span>Random</span></button>
-       
-            <button class=".btn-xs dropdown-toggle" onclick="_BusinessLogic.CreateDropDownOfLevels()" type="button"
-             id="level" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Levels
-            </button>
-            <div class="dropdown-menu" id="LevelButtonContainer">
-            </div>
     </div>
     <div class="setsize">
         <div class="col">
@@ -37,6 +30,13 @@
             <input type="number" min="5" max="600" value="60" id="widthIn" placeholder="Width">
             <button type="button" class=".btn-xs" onclick="setSize();" id="size">Set</button>
         </div>
+    </div>
+    <div>
+        <center>
+        <textarea name="level" id="level" cols="35" rows="10"></textarea><br>
+        <button type="button" class=".btn-xs" onclick="levelChange();">Load Level</button>
+    </center>
+
     </div>
 
     

@@ -30,15 +30,13 @@ td {
 span {
     color: #222;
 }
-
-#start,
-#clear,
-#random {   
+ button {
     border-radius: 5px;
     background: linear-gradient(
         to bottom right,
         #C5DEC6, #eeb1d3);
-}
+ }
+
 
 #level{
     border-radius: 5px;
@@ -52,6 +50,10 @@ span {
     background: linear-gradient(
         to bottom right,
         #C5DEC6, #eeb1d3);
+}
+
+#levels {
+    text-align: center;
 }
 
 td.dead {

@@ -13,32 +13,59 @@
 </head>
 
 <body>
+    <div class="padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>The Game of Life</h1>
+                    <div id="gridContainer">
 
-    <h1>The Game of Life</h1>
-    <div id="gridContainer">
-
-    </div>
-
-    <div class="controls">
-        <button type="button" class=".btn-xs" id="start"><span>Start</span></button>
-        <button type="button" class=".btn-xs" id="clear"><span>Clear</span></button>
-        <button type="button" class=".btn-xs" id="random"><span>Random</span></button>
-    </div>
-    <div class="setsize">
-        <div class="col">
-            <input type="number" min="10" max="600" value="25" id="heightIn" placeholder="Height">
-            <input type="number" min="10" max="600" value="60" id="widthIn" placeholder="Width">
-            <button type="button" class=".btn-xs" onclick="setSize();" id="size">Set</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="levels">
-        <textarea name="level" id="level" cols="35" rows="10"></textarea><br>
-        <button type="button" class=".btn-xs" onclick="levelChange();">Load Level</button>
-
-
+    <div class="padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="btn-group">
+                        <button type="button" class="btn" id="start"><span>Start</span></button>
+                        <button type="button" class="btn" id="clear"><span>Clear</span></button>
+                        <button type="button" class="btn" id="random"><span>Random</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <div class="padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="setsize">
+                        <div class="col">
+                            <input type="number" min="10" max="600" value="25" id="heightIn" placeholder="Height">
+                            <input type="number" min="10" max="600" value="60" id="widthIn" placeholder="Width">
+                            <button type="button" class="btn btn-xs" onclick="setSize();" id="size">Set</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="levels">
+                        <textarea name="level" id="level" cols="35" rows="10"></textarea><br>
+                        <button type="button" class="btn btn-xs" onclick="levelChange();">Load Level</button>
 
-    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 

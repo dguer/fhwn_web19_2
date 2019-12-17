@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/dguer/fhwn_web19_2#readme",
   "devDependencies": {
-    "gulp": "^4.0.2"
+    "gulp": "^4.0.2",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglify": "^3.0.2",
+    "node-sass": "^4.13.0"
   }
 }

@@ -1,7 +1,7 @@
 {
   "name": "fhwn_web19_2",
   "version": "1.0.0",
-  "description": "",
+  "description": "Githb Pages:",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/dguer/fhwn_web19_2.git"
   },
-  "author": "Dilber Guer",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/dguer/fhwn_web19_2/issues"
@@ -18,8 +18,9 @@
   "homepage": "https://github.com/dguer/fhwn_web19_2#readme",
   "devDependencies": {
     "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-minify": "^3.1.0",
     "gulp-sass": "^4.0.2",
-    "gulp-uglify": "^3.0.2",
-    "node-sass": "^4.13.0"
+    "gulp-uglify": "^3.0.2"
   }
 }

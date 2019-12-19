@@ -1,48 +1,50 @@
-const gulp = require('gulp');
-const fs = require('fs');
-const uglify = require('gulp-uglify');
-const sass = require('gulp-sass');
+"use strict";
+
+const { src, dest, parallel, series, watch } = require('gulp');
 const concat = require('gulp-concat');
+const htmlhint = require("gulp-htmlhint");
 
-// Logs Message
-gulp.task('message', function () {
-    return console.log('Gulp is running...');
-});
+const sass = require('gulp-sass');
+sass.compiler = require('node-sass');
 
-// Copy HTML files
-gulp.task('copyHtml', function () {
-    gulp.src('src/*.html')
-        .pipe(gulp.dest('dist'));
-});
+var uncomment = require('gulp-uncomment');
+var favicons = require('gulp-favicons');
 
-// Minify JS
-gulp.task('minify', async function () {
-    gulp.src('src/js/*.js')
-        .pipe(uglify())
-        .pipe(gulp.dest('dist/js'))
-});
-
-// Compile sass
-gulp.task('sass', async function () {
-    gulp.src('src/sass/*.scss')
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('dist/styles'))
-});
-
-// Scripts
-gulp.task('scripts', async function () {
-    gulp.src('src/js/*.js')
-        .pipe(concat())
-        .pipe(gulp.dest('dist/js'));
-});
+const debug = require('gulp-debug');
 
 
-async function asyncAwaitTask() {
-    const { version } = fs.readFileSync('package.json');
-    console.log(version);
-    await Promise.resolve('some result');
+function html() {
+  return src('src/*.html')
+	.pipe(debug({title: 'html:'}))
+	.pipe(htmlhint())
+	.pipe(htmlhint.failOnError())
+	.pipe(dest('dist'));
 }
 
-exports.default = asyncAwaitTask;
 
-gulp.task('default', ['message', 'copyHtml', 'minify', 'sass', 'scripts']);
+async function css() {
+  return src('src//sass/*.scss')
+	.pipe(debug({title: 'css :'}))
+    .pipe(sass().on('error', sass.logError))
+    .pipe(dest('dist/css'));
+}
+
+async function js() {
+  return src('src/js/*.js', { sourcemaps: true })
+	.pipe(debug({title: 'js  :'}))
+    .pipe(concat('code.js'))
+	.pipe(uncomment({
+            removeEmptyLines: true
+        }))
+    .pipe(dest('dist/js', { sourcemaps: true }));
+}
+
+function ico() {
+    return src('src/*.ico')
+      .pipe(dest('dist'));
+  }
+
+exports.js = js;
+exports.css = css;
+exports.html = series(html);
+exports.default = parallel(html, css, js, ico);

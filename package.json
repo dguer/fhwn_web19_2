@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/dguer/fhwn_web19_2/issues"
   },
-  "homepage": "https://github.com/dguer/fhwn_web19_2#readme",
+  "homepage": "https://github.com/dguer/fhwn_web19_2/dist/index.html",
   "devDependencies": {
     "autoprefixer": "^9.7.3",
     "browser-sync": "^2.26.7",

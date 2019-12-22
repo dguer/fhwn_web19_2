@@ -169,7 +169,7 @@ function randomButtonHandler() {
     }
 }
 
-
+// Only working for 1 row
 function levelChange() {
     var levelLoad = document.getElementById("level").value;
     levelLoad.split("\n");
@@ -177,15 +177,12 @@ function levelChange() {
     for (var x = 0; x < levelLoad.length; x++) {
         for (var i = 0; i < rows; i++) {
             for (var j = 0; j < cols; j++) {
-
+              
                 var isLive = levelLoad[j][i];
                 if (isLive == 1) {
                     var cell = document.getElementById(i + "_" + j);
                     cell.setAttribute("class", "live");
-                } else if (isLive == 0 || "") {
-                    var cell = document.getElementById(i + "_" + j);
-                    cell.setAttribute("class", "dead");
-                }
+                } 
 
             }
 

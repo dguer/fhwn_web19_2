@@ -14,13 +14,13 @@ const debug = require('gulp-debug');
 
 var deploy = require('gulp-gh-pages');
 
-gulp.task('deploy', function () {
-  return gulp.src("./prod/**/*")
-    .pipe(deploy({ 
-      remoteUrl: "https://dguer.github.io/fhwn_web19_2/",
-      branch: "master"
-    }))
-});
+/**
+ * Push build to gh-pages
+ */
+async function deploy() {
+  return src("./dist/**/*")
+    .pipe(deploy())
+};
 
 function html() {
   return src('src/*.html')
@@ -53,7 +53,8 @@ function ico() {
       .pipe(dest('dist'));
   }
 
+exports.deploy= deploy;
 exports.js = js;
 exports.css = css;
 exports.html = series(html);
-exports.default = parallel(html, css, js, ico);
+exports.default = parallel(deploy, html, css, js, ico);

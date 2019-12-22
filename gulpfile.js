@@ -12,17 +12,6 @@ var favicons = require('gulp-favicons');
 
 const debug = require('gulp-debug');
 
-var deploy = require('gulp-gh-pages');
-
-/**
- * Push build to gh-pages
- */
-async function deploy() {
-  return src("./dist/**/*")
-    .pipe(deploy({remoteUrl: "https://dguer.github.io/fhwn_web19_2/",
-    branch: "master"}))
-};
-
 function html() {
   return src('src/*.html')
 	.pipe(debug({title: 'html:'}))
@@ -58,4 +47,4 @@ exports.deploy= deploy;
 exports.js = js;
 exports.css = css;
 exports.html = series(html);
-exports.default = parallel(deploy, html, css, js, ico);
+exports.default = parallel(html, css, js, ico);

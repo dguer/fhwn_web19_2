@@ -43,7 +43,6 @@ function ico() {
       .pipe(dest('dist'));
   }
 
-exports.deploy= deploy;
 exports.js = js;
 exports.css = css;
 exports.html = series(html);

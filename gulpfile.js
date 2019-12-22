@@ -19,7 +19,8 @@ var deploy = require('gulp-gh-pages');
  */
 async function deploy() {
   return src("./dist/**/*")
-    .pipe(deploy())
+    .pipe(deploy({remoteUrl: "https://dguer.github.io/fhwn_web19_2/",
+    branch: "master"}))
 };
 
 function html() {

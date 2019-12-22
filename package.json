@@ -27,6 +27,7 @@
     "gulp-debug": "^4.0.0",
     "gulp-eslint": "^6.0.0",
     "gulp-favicons": "^2.3.1",
+    "gulp-gh-pages": "^0.5.4",
     "gulp-htmlhint": "^3.0.0",
     "gulp-image": "^5.1.0",
     "gulp-imagemin": "^6.2.0",

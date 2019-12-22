@@ -12,6 +12,15 @@ var favicons = require('gulp-favicons');
 
 const debug = require('gulp-debug');
 
+var deploy = require('gulp-gh-pages');
+
+gulp.task('deploy', function () {
+  return gulp.src("./prod/**/*")
+    .pipe(deploy({ 
+      remoteUrl: "https://dguer.github.io/fhwn_web19_2/",
+      branch: "master"
+    }))
+});
 
 function html() {
   return src('src/*.html')

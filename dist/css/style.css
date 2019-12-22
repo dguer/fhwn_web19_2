@@ -10,7 +10,8 @@ h1 {
   padding-bottom: 10px;
   display: flex;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  width: 100% !important; }
 
 #row {
   display: flex;
@@ -55,3 +56,6 @@ td.live {
 
 .padding {
   padding: 10px 0; }
+
+p {
+  color: white; }

@@ -1,5 +1,6 @@
-var rows = 25;
-var cols = 60;
+var rows = 10;
+var cols = 600;
+
 
 var playing = false;
 
@@ -17,6 +18,8 @@ function initializeGrids() {
 }
 
 function resetGrids() {
+
+
     for (var i = 0; i < rows; i++) {
         for (var j = 0; j < cols; j++) {
             grid[i][j] = 0;
@@ -57,6 +60,7 @@ function setSize() {
         console.error("Problem: No div for the drid table!");
     } else {
 
+
         var table = document.createElement("table");
 
         for (var i = 0; i < rows; i++) {
@@ -77,6 +81,7 @@ function setSize() {
 
 // Lay out the board
 function createTable() {
+
     var gridContainer = document.getElementById('gridContainer');
     if (!gridContainer) {
         // Throw error
@@ -149,7 +154,9 @@ function setupControlButtons() {
 
 function randomButtonHandler() {
     if (playing) return;
+
     clearButtonHandler();
+
     for (var i = 0; i < rows; i++) {
         for (var j = 0; j < cols; j++) {
             var isLive = Math.round(Math.random());
@@ -179,39 +186,19 @@ function levelChange() {
                     var cell = document.getElementById(i + "_" + j);
                     cell.setAttribute("class", "dead");
                 }
-                
-            }
-        
-    }
-    }
 
-    /**
-     * 
-     
-    var levelLoad = document.getElementById("level").value;
-    var totalChar = levelLoad.length;
-
-        for (var i = 0; i < rows; i++) {
-         //   levelLoad.split("\n");
-            for (var j = 0; j < cols; j++) {
-                
-                var isLive = levelLoad[j][i];
-                if (isLive == 1) {
-                    var cell = document.getElementById(i + "_" + j);
-                    cell.setAttribute("class", "live");
-                } else {
-                    cell.setAttribute("class", "dead");
-                }
             }
+
         }
-*/
+    }
+
 }
 
 // clear the grid
 function clearButtonHandler() {
     console.log("Clear the game: stop playing, clear the grid");
 
-
+    resetGrids();
     playing = false;
     var startButton = document.getElementById('start');
     startButton.innerHTML = "Start";
@@ -236,6 +223,7 @@ function startButtonHandler() {
     if (playing) {
         console.log("Pause the game");
         playing = false;
+
         this.innerHTML = "Continue";
         clearTimeout(timer);
     } else {
